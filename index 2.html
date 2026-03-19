@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khusus Untuk Wanitaku ❤️</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap');
+
+        :root {
+            --warna-bg: #ffeef2;
+            --warna-teks: #8b4367;
+            --pink-tua: #ff4d6d;
+        }
+
+        body {
+            background-color: var(--warna-bg);
+            background-image: radial-gradient(#ffc2d1 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            color: var(--warna-teks);
+            text-align: center;
+        }
+
+        #container {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            padding: 40px 20px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            width: 85%;
+            max-width: 450px;
+            border: 2px solid #fff;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        h2 { font-family: 'Dancing Script', cursive; font-size: 2.5rem; margin-bottom: 10px; color: var(--pink-tua); }
+        
+        .love-animation {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: heartBeat 1.5s infinite;
+        }
+
+        #pesan-bucin {
+            font-size: 1.1rem;
+            min-height: 80px;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .heart-rain {
+            position: fixed;
+            top: -10px;
+            font-size: 20px;
+            z-index: 1;
+            user-select: none;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="musikAkad" loop>
+        <source src="https://files.catbox.moe/k6m115.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="container" class="animate__animated animate__zoomIn">
+        <div class="love-animation">💖</div>
+        <div id="wrapper">
+            <h2>Halo Sayang..</h2>
+            <p>Sentuh layar ini sebentar ya? <br>Ada sesuatu buat wanitaku yang paling cantik.</p>
+        </div>
+        <div id="pesan-bucin" class="hidden"></div>
+    </div>
+
+    <footer>Dibuat dengan seluruh hatiku</footer>
+
+    <script>
+        const container = document.getElementById('container');
+        const wrapper = document.getElementById('wrapper');
+        const pesanBucin = document.getElementById('pesan-bucin');
+        const musik = document.getElementById('musikAkad');
+
+        let mulai = false;
+
+        container.addEventListener('click', async () => {
+            if (mulai) return;
+            mulai = true;
+
+            // Putar Musik
+            musik.play();
+
+            // Sapaan awal
+            await Swal.fire({
+                title: 'Halo Cantiknya Aku ❤️',
+                text: 'Malam ini, izinkan aku sampaikan sesuatu buat kamu...',
+                imageUrl: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3h2OHR4bmRjbmI0Znd4ZzR0OXN4ZzR0OXN4ZzR0OXN4ZzR0OXN4ZzR0ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/c77v7pMCY7M3SSh636/giphy.gif',
+                imageWidth: 150,
+                confirmButtonText: 'Baca ya sayang',
+                confirmButtonColor: '#ff4d6d'
+            });
+
+            wrapper.style.display = 'none';
+            
+            // Rangkaian Pesan Over Bucin (Durasi lambat agar terasa tulus)
+            const teks = [
+                "Selamat malam ya, Sayang...",
+                "Hari ini berat ya? Makasih ya udah bertahan sejauh ini.",
+                "Aku bangga banget punya wanita hebat kayak kamu.",
+                "Tau gak? Setiap kali aku liat senyum kamu...",
+                "Duniaku rasanya jauh lebih tenang.",
+                "Makasih ya udah mau nemenin aku sampai detik ini.",
+                "Tolong, jangan pernah bosan sama aku ya?",
+                "Aku mau kita yang sampai akhir nanti.",
+                "Persis seperti lagu ini...",
+                "Aku ingin 'Akad' itu benar-benar jadi nyata sama kamu.",
+                "Sekarang, istirahat ya sayangku.",
+                "Jangan lupa doa, biar mimpinya indah.",
+                "I Love You So Much, My Queen. ❤️"
+            ];
+
+            for (let i = 0; i < teks.length; i++) {
+                pesanBucin.innerHTML = `<p class="animate__animated animate__fadeInUp">${teks[i]}</p>`;
+                await new Promise(r => setTimeout(r, 3500)); // Jeda 3.5 detik biar syahdu
+            }
+
+            // Bagian Interaktif Akhir
+            const { value: janji } = await Swal.fire({
+                title: 'Satu pertanyaan sayang...',
+                text: 'Kamu janji kan bakal terus di samping aku?',
+                showCancelButton: true,
+                confirmButtonText: 'Janji, Sayang ❤️',
+                cancelButtonText: 'Enggak (Cuma Bercanda)',
+                confirmButtonColor: '#ff4d6d',
+                cancelButtonColor: '#999'
+            });
+
+            if (janji) {
+                await Swal.fire({
+                    title: 'Makasih Sayang!',
+                    text: 'Mimpi indah ya, i love you to the moon and back!',
+                    icon: 'success',
+                    confirmButtonColor: '#ff4d6d'
+                });
+            } else {
+                Swal.fire('Ehh!', 'Nggak ada pilihan lain selain janji, wleee! 😝', 'error');
+            }
+            
+            pesanBucin.innerHTML = "<h2>Good Night, Sayang! ❤️</h2><p>Tidurlah, aku menjagamu dalam doa.</p>";
+        });
+
+        // Hujan Hati
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-rain');
+            heart.innerHTML = '🌸'; // Bisa diganti '❤️'
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+
+            heart.animate([
+                { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                { transform: 'translateY(100vh) rotate(360deg)', opacity: 0 }
+            ], {
+                duration: 5000,
+                iterations: 1
+            });
+
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        setInterval(createHeart, 400);
+    </script>
+</body>
+</html>
